@@ -1,0 +1,326 @@
+/* --- Variáveis de Cor (Baseadas na sua logo) --- */
+:root {
+  --bg-dark: #0a0514; /* Um roxo/preto bem escuro */
+  --text-light: #f0f0f0;
+  --text-secondary: #a9a9b3;
+  --accent-purple: #a049f0;
+  --accent-pink: #f049a0;
+  --accent-blue: #00d0ff;
+  --font-title: "Cinzel", serif;
+  --font-body: "Lato", sans-serif;
+}
+
+/* --- Reset Básico e Estilo do Body --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+
+  /* Efeito Sutil de Nebulosa no Fundo */
+  background-image: radial-gradient(
+      circle at 20% 20%,
+      rgba(160, 73, 240, 0.15),
+      transparent 40%
+    ),
+    radial-gradient(circle at 80% 70%, rgba(0, 208, 255, 0.1), transparent 30%);
+  background-attachment: fixed;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- Header e Navegação --- */
+.site-header {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(160, 73, 240, 0.3);
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  max-height: 50px; /* Ajuste a altura da sua logo */
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+nav a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--accent-purple);
+  text-shadow: 0 0 10px var(--accent-purple);
+}
+
+/* --- Conteúdo Principal e Títulos --- */
+main.container {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+h1 {
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  color: var(--text-light);
+  text-align: center;
+  margin-bottom: 10px;
+  text-shadow: 0 0 15px rgba(160, 73, 240, 0.5);
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+/* --- Grade Dinâmica (Masonry) --- */
+.masonry-grid {
+  display: grid;
+
+  /* Apenas definimos as colunas. Elas serão responsivas. */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
+  /* REMOVA a linha 'grid-auto-rows' */
+
+  grid-auto-flow: dense;
+  gap: 15px;
+}
+
+.grid-item {
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 0 12px rgba(160, 73, 240, 0.6), 0 0 4px rgba(0, 208, 255, 0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+  /* --- ESTA É A MÁGICA --- */
+  /* Força o item a ser um quadrado (proporção 1 para 1) 
+       Sua altura sempre será igual à sua largura responsiva. */
+  aspect-ratio: 1 / 1;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+
+  /* Agora sim: uma imagem 1x1 em um contêiner 1x1 
+       com 'cover' = ajuste perfeito. */
+  object-fit: cover;
+
+  display: block;
+}
+
+/* --- Classes de Tamanho (Opcionais) --- */
+/* Se você usar 'wide' no JSON, ela ficará retangular (2x1) */
+.grid-item.wide {
+  grid-column: span 2;
+}
+
+/* Se você usar 'tall' no JSON, ela ficará retangular (1x2) */
+.grid-item.tall {
+  grid-row: span 2;
+}
+
+/* Se você usar 'large' no JSON, ela ficará um quadrado grande (2x2) */
+.grid-item.large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* --- Footer --- */
+.site-footer {
+  text-align: center;
+  padding: 30px 0;
+  margin-top: 40px;
+  color: var(--text-secondary);
+  border-top: 1px solid rgba(160, 73, 240, 0.3);
+}
+
+/* --- Animação de Hover e Cursor --- */
+/* (Altere sua classe .grid-item existente para adicionar 'cursor: pointer') */
+.grid-item {
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 0 12px rgba(160, 73, 240, 0.6), 0 0 4px rgba(0, 208, 255, 0.5);
+
+  /* MUDANÇA: Adiciona o cursor e melhora a transição */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* <--- ADICIONADO */
+
+  aspect-ratio: 1 / 1;
+}
+
+/* (Sua classe :hover existente) */
+.grid-item:hover {
+  transform: scale(1.03); /* <--- Esta é a "leve animação" */
+  box-shadow: 0 0 20px rgba(160, 73, 240, 0.9), 0 0 8px rgba(0, 208, 255, 0.7);
+}
+
+/* --- Estilos da Janela Modal (Lightbox) --- */
+
+.modal-overlay {
+  /* Oculto por padrão */
+  display: none;
+
+  /* Configuração de Tela Cheia */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Fundo escuro semi-transparente */
+  background-color: rgba(10, 5, 20, 0.9);
+
+  /* Para centralizar o conteúdo */
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Classe que o JS vai adicionar para mostrar o modal */
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  display: flex;
+  background-color: var(--bg-dark);
+  border-radius: 8px;
+  box-shadow: 0 0 40px rgba(160, 73, 240, 0.7);
+  border: 1px solid rgba(160, 73, 240, 0.5);
+
+  width: 100%;
+  max-width: 1000px; /* Largura máxima do modal */
+  max-height: 80vh; /* Altura máxima */
+
+  position: relative;
+  overflow: hidden; /* Para o 'X' não sair */
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  color: var(--text-light);
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+  color: var(--accent-purple);
+}
+
+.modal-image-container {
+  flex: 6; /* A imagem ocupa 60% */
+  background-color: #000; /* Fundo preto para a imagem */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 'contain' para ver a imagem inteira */
+}
+
+.modal-details {
+  flex: 4; /* Os detalhes ocupam 40% */
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto; /* Caso o texto seja longo */
+}
+
+.modal-details h2 {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  color: var(--text-light);
+  text-shadow: 0 0 10px var(--accent-purple);
+  margin-bottom: 15px;
+}
+
+.modal-details p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+.whatsapp-button {
+  display: inline-block;
+  padding: 12px 20px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #25d366; /* Cor oficial do WhatsApp */
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  background-color: #128c7e;
+}
+
+/* --- Responsividade para Celular --- */
+@media (max-width: 768px) {
+  .modal-content {
+    flex-direction: column; /* Empilha imagem e texto */
+    max-height: 90vh;
+  }
+
+  .modal-image-container {
+    flex: none;
+    height: 50%; /* Imagem ocupa metade da altura */
+  }
+
+  .modal-details {
+    flex: none;
+    height: 50%;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .modal-details h2 {
+    font-size: 1.5rem;
+  }
+
+  .modal-details p {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arcana 3D - Portfólio</title>
+
+    <!-- Icone da página -->
+    <link rel="icon" href="assets/icons/icon color.png" type="image/png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/mainStyle.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <img
+          src="assets/icons/arcana 3d Logo Full.png"
+          alt="Logo Arcana 3D"
+          class="logo"
+        />
+
+        <nav>
+          <ul>
+            <!--
+                <li><a href="#">Portfólio</a></li>
+            <li><a href="#">Sobre</a></li>
+            -->
+            <li><a href="https://wa.me/558396576222">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Nosso Portfólio Arcano</h1>
+      <p class="subtitle">Veja nossas criações e projetos em impressão 3D</p>
+
+      <div id="portfolio-grid" class="masonry-grid"></div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2025 Arcana 3D. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/mainScript.js"></script>
+    <div id="modal-overlay" class="modal-overlay">
+      <div class="modal-content">
+        <span class="modal-close" id="modal-close">&times;</span>
+
+        <div class="modal-image-container">
+          <img src="" alt="Imagem do portfólio em tela cheia" id="modal-img" />
+        </div>
+
+        <div class="modal-details">
+          <h2 id="modal-title"></h2>
+          <p id="modal-desc"></p>
+          <a
+            href="#"
+            id="modal-whatsapp-btn"
+            class="whatsapp-button"
+            target="_blank"
+          >
+            Encomende Aqui
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
